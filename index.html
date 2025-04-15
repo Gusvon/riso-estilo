@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Riso & Estilo – O Arraiá da Moda Fina</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2b2b2b;
+        --secondary: #cfa15a; /* tom dourado suave */
+        --accent: #f5f5f5;
+        --background-light: #f8f8f8;
+        --max-width: 1200px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Playfair Display", serif;
+      }
+
+      /* Fundo atualizado: imagem com cores de festa junina */
+      body {
+        background: url("https://cdn.pixabay.com/photo/2021/06/10/21/17/festa-junina-6325977_960_720.png")
+          no-repeat center center/cover;
+        color: var(--primary);
+        padding-bottom: 2rem;
+        position: relative;
+        line-height: 1.6;
+      }
+
+      header {
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid #eee;
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(3px);
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: var(--max-width);
+        margin: 0 auto;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      }
+
+      .nav-left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 3rem;
+        color: var(--primary);
+        letter-spacing: 0.1em;
+        font-family: "Cinzel", serif;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--primary);
+        margin-top: 0.5rem;
+        font-style: italic;
+      }
+
+      .nav-bar {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(4px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .nav-item {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--primary);
+        cursor: pointer;
+        transition: color 0.3s, transform 0.3s;
+      }
+
+      .nav-item:hover {
+        color: var(--secondary);
+        transform: scale(1.1);
+      }
+
+      .search-bar {
+        flex-grow: 1;
+        max-width: 400px;
+        margin-left: 2rem;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 0.8rem 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: 2rem;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      .search-input:focus {
+        border-color: var(--secondary);
+        outline: none;
+      }
+
+      main.gallery {
+        max-width: var(--max-width);
+        margin: 3rem auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .card {
+        background: var(--background-light);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+        position: relative;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover .card-image {
+        transform: scale(1.05);
+      }
+
+      .card-info {
+        padding: 1.5rem;
+      }
+
+      .price-tag {
+        background: var(--secondary);
+        color: #fff;
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        font-weight: 700;
+        display: inline-block;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .price-tag:hover {
+        background: #a8854a;
+      }
+
+      .cart-btn {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: var(--primary);
+        color: #fff;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+      }
+
+      .cart-btn:hover {
+        background: var(--secondary);
+      }
+
+      .cart-counter {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: var(--secondary);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .nav-left {
+          margin-bottom: 1rem;
+        }
+        .search-bar {
+          max-width: 300px;
+        }
+        main.gallery {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+      }
+
+      @media (max-width: 480px) {
+        .search-bar {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav-left">
+        <div class="logo">Riso & Estilo</div>
+        <div class="subtitle">O Arraiá da Moda Fina</div>
+      </div>
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Buscar looks..." />
+      </div>
+    </header>
+
+    <div class="nav-bar">
+      <div class="nav-item">Início</div>
+      <div class="nav-item">Coleção</div>
+      <div class="nav-item">Acessórios</div>
+      <div class="nav-item">Roupas</div>
+      <div class="nav-item">Calças</div>
+    </div>
+
+    <main class="gallery">
+      <!-- Look 1 -->
+      <div class="card">
+        <img
+          src="https://img.elo7.com.br/product/zoom/210AE22/caipira-adulto-espartilho-fantasia-gg.jpg"
+          class="card-image"
+          alt="Vestido Junino Elegante"
+        />
+        <div class="card-info">
+          <span class="price-tag">R$ 249,90</span>
+          <h3>Vestido Junino Elegante</h3>
+          <p>Vestido sofisticado com detalhes refinados para a festa junina.</p>
+        </div>
+      </div>
+
+      <!-- Look 2 -->
+      <div class="card">
+        <img
+          src="https://i.pinimg.com/originals/a4/f6/d2/a4f6d228089c76af7e73b513f19b457d.jpg"
+          class="card-image"
+          alt="Look Festa Junina"
+        />
+        <div class="card-info">
+          <span class="price-tag">R$ 219,90</span>
+          <h3>Look Festa Junina</h3>
+          <p>Combinação clássica e elegante para arrasar no arraiá.</p>
+        </div>
+      </div>
+
+      <!-- Look 3 -->
+      <div class="card">
+        <img
+          src="https://casaefesta.com/wp-content/uploads/2022/05/roupa-masculina-festa-junina-1.jpeg"
+          class="card-image"
+          alt="Look Masculino Junino"
+        />
+        <div class="card-info">
+          <span class="price-tag">R$ 179,90</span>
+          <h3>Look Masculino Junino</h3>
+          <p>Estilo rústico com camisa xadrez e calça confortável.</p>
+        </div>
+      </div>
+    </main>
+
+    <div class="cart-btn">
+      <i class="fas fa-shopping-bag"></i>
+      <div class="cart-counter">0</div>
+    </div>
+
+    <script>
+      // Efeito de lightbox ao clicar na imagem
+      document.querySelectorAll(".card-image").forEach((img) => {
+        img.addEventListener("click", () => {
+          const lightbox = document.createElement("div");
+          lightbox.classList.add("lightbox");
+          lightbox.style.cssText =
+            "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; align-items: center; justify-content: center; z-index: 2000;";
+
+          const clonedImg = img.cloneNode();
+          clonedImg.style.maxWidth = "90%";
+          clonedImg.style.maxHeight = "90%";
+          clonedImg.style.borderRadius = "12px";
+
+          lightbox.appendChild(clonedImg);
+          lightbox.addEventListener("click", () => lightbox.remove());
+          document.body.appendChild(lightbox);
+        });
+      });
+
+      // Atualiza o carrinho quando a etiqueta de preço é clicada
+      let cartCount = 0;
+      document.querySelectorAll(".price-tag").forEach((price) => {
+        price.addEventListener("click", () => {
+          cartCount++;
+          document.querySelector(".cart-counter").textContent = cartCount;
+          price.style.backgroundColor = "#2b2b2b";
+          setTimeout(() => {
+            price.style.backgroundColor = getComputedStyle(
+              document.documentElement
+            ).getPropertyValue("--secondary");
+          }, 200);
+        });
+      });
+    </script>
+  </body>
+</html>
